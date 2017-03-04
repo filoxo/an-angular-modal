@@ -10,6 +10,8 @@ export class ModalComponent implements OnInit {
   @Output() opened = new EventEmitter<any>();
   @Output() closed = new EventEmitter<any>();
   private show: boolean = false;
+  private html: HTMLElement = document.getElementsByTagName('html')[0];
+
   constructor() { }
 
   ngOnInit() {
@@ -18,11 +20,17 @@ export class ModalComponent implements OnInit {
   open() {
     this.show = true;
     this.opened.emit(null);
+    this.preventBgScrolling();
   }
 
   close() {
     this.show = false;
-    this.closed.emit(null)
+    this.closed.emit(null);
+    this.preventBgScrolling();
+  }
+
+  private preventBgScrolling() {
+      this.html.style.overflow = this.show ? 'hidden' : '';
   }
 
 }
