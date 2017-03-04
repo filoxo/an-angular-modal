@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
+  @Output() opened = new EventEmitter<any>();
+  @Output() closed = new EventEmitter<any>();
   private show: boolean = false;
   constructor() { }
 
@@ -15,10 +17,12 @@ export class ModalComponent implements OnInit {
 
   open() {
     this.show = true;
+    this.opened.emit(null);
   }
 
   close() {
     this.show = false;
+    this.closed.emit(null)
   }
 
 }
