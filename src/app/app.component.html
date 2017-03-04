@@ -1,7 +1,15 @@
 <main>
-  <section class="red">Top
-    <app-modal>test test test</app-modal>
+  <app-modal #myModal>This is my modal</app-modal>
+  <section class="red">
+    <p>Top</p>
+    <button class="btn" (click)="myModal.open()">Open</button>
   </section>
-  <section class="blue">Middle</section>
-  <section class="green">Bottom</section>
+  <section class="blue">
+    <p>Middle</p>
+    <button class="btn" (click)="myModal.open()">Open</button>
+  </section>
+  <section class="green">
+    <p>Bottom</p>
+    <button class="btn" (click)="myModal.open()">Open</button>
+  </section>
 </main>
