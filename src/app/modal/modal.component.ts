@@ -7,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-  private show: boolean = true;
+  private show: boolean = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  open() {
+    this.show = true;
+  }
+
+  close() {
+    this.show = false;
   }
 
 }
