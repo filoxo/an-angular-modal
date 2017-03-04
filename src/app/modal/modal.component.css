@@ -1,0 +1,43 @@
+.backdrop {
+    align-items: center;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 10;
+}
+.contents {
+    background: rgba(255,255,255,.9);
+    border-radius: 1.5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    color: #444;
+    max-width: 100%;
+    min-width: 260px;
+    padding: 1rem;
+    position: relative;
+    width: 350px;
+    word-wrap: break-word;
+}
+footer {
+    text-align: right;
+}
+.closeBtn {
+    border: none;
+    border-radius: 1px;
+    background-color: transparent;
+    font-weight: bold;
+    padding: .5rem;
+    text-transform: uppercase;
+    transition: background-color .25s;
+}
+.closeBtn:hover,
+.closeBtn:focus {
+    background-color: #BDBDBD;
+}
+.closeBtn:active {
+    background-color: #9E9E9E;
+}

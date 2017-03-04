@@ -1,3 +1,8 @@
-<p>
-  modal works!
-</p>
+<div class="backdrop" #modal>
+    <div class="contents" role="dialog">
+        <ng-content></ng-content>
+        <footer>
+            <button class="closeBtn">Close</button>
+        </footer>
+    </div>
+</div>
