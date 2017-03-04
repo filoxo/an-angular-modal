@@ -1,4 +1,4 @@
-<div class="backdrop" #modal *ngIf="show">
+<div class="backdrop" #modal *ngIf="show" (click)="close()">
     <div class="contents" role="dialog">
         <ng-content></ng-content>
         <footer>
