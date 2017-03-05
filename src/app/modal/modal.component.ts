@@ -1,4 +1,13 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+interface ModalConfig extends Object {
+    title?: string;
+    id?: string;
+}
+
+const defaultConfig = <ModalConfig> {};
+
+let id = 0;
 
 @Component({
   selector: 'app-modal',
@@ -6,15 +15,22 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-
+  @Input() options: ModalConfig;
   @Output() opened = new EventEmitter<any>();
   @Output() closed = new EventEmitter<any>();
   private show: boolean = false;
+  private id: string;
+  private titleId: string;
+  private contentId: string;
   private html: HTMLElement = document.getElementsByTagName('html')[0];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    this.options = Object.assign({}, defaultConfig, this.options);
+    this.id = this.options.id || `modal-${id++}`;
+    this.titleId = `${this.id}-title`;
+    this.contentId = `${this.id}-content`;
   }
 
   open() {
