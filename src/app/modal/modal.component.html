@@ -1,6 +1,11 @@
 <div class="backdrop" #modal *ngIf="show" (click)="close()">
-    <div class="contents" role="dialog">
-        <ng-content></ng-content>
+    <div class="contents" role="dialog" id="{{ id }}"
+        [attr.aria-labelledby]="title ? titleId : null"
+        [attr.aria-describedby]="contentId">
+        <h2 class="title" id="{{ titleId }}" *ngIf="title">{{ title }}</h2>
+        <div id="{{ contentId }}">
+            <ng-content></ng-content>
+        </div>
         <footer>
             <button class="closeBtn" (click)="close()">Close</button>
         </footer>
