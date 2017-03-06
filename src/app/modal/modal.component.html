@@ -1,5 +1,6 @@
-<div class="backdrop" #modal *ngIf="show" (click)="close()">
+<div class="backdrop" *ngIf="show" (click)="close()">
     <div class="contents" role="dialog" id="{{ id }}"
+        #modal
         (click)="$event.stopPropagation()"
         [attr.aria-labelledby]="title ? titleId : null"
         [attr.aria-describedby]="contentId">
