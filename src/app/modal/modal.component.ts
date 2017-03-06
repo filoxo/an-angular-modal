@@ -22,7 +22,7 @@ export class ModalComponent implements OnInit {
   private id: string;
   private titleId: string;
   private contentId: string;
-  private html: HTMLElement = document.getElementsByTagName('html')[0];
+  private html: HTMLElement = document.querySelector('html');
 
   constructor() {}
 
