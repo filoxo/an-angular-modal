@@ -1,5 +1,5 @@
 <div class="backdrop" *ngIf="show" (click)="close()">
-    <div class="contents" role="dialog" id="{{ id }}"
+    <div class="contents" role="dialog" id="{{ id }}" tabindex=""
         #modal
         (click)="$event.stopPropagation()"
         [attr.aria-labelledby]="title ? titleId : null"

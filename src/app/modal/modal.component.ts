@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, Renderer } from '@angular/core';
 
 interface ModalConfig extends Object {
-    title?: string;
-    id?: string;
+  title?: string;
+  id?: string;
 }
 
-const defaultConfig = <ModalConfig> {};
+const defaultConfig = <ModalConfig>{};
 
 let id = 0;
 
@@ -18,19 +18,30 @@ export class ModalComponent implements OnInit {
   @Input() options: ModalConfig;
   @Output() opened = new EventEmitter<any>();
   @Output() closed = new EventEmitter<any>();
+  @ViewChild('modal') modal: ElementRef;
   private show: boolean = false;
   private id: string;
   private titleId: string;
   private contentId: string;
   private html: HTMLElement = document.querySelector('html');
 
-  constructor() {}
+  constructor(private renderer: Renderer) { }
 
   ngOnInit() {
     this.options = Object.assign({}, defaultConfig, this.options);
     this.id = this.options.id || `modal-${id++}`;
     this.titleId = `${this.id}-title`;
     this.contentId = `${this.id}-content`;
+  }
+
+  ngAfterViewChecked() {
+    if (!!this.modal) {
+      if (this.show) {
+        this.modal.nativeElement.focus();
+      } else {
+        console.log('refocus on trigger')
+      }
+    }
   }
 
   open() {
@@ -46,7 +57,15 @@ export class ModalComponent implements OnInit {
   }
 
   private preventBgScrolling() {
-      this.html.style.overflow = this.show ? 'hidden' : '';
+    this.html.style.overflow = this.show ? 'hidden' : '';
+  }
+
+  private focus(event?: Event) {
+    if (!!event && this.modal && !this.modal.nativeElement.contains(event.target)) {
+      this.renderer.invokeElementMethod(this.modal.nativeElement, 'focus');
+    } else {
+      this.renderer.invokeElementMethod(this.modal.nativeElement, 'focus')
+    }
   }
 
 }
